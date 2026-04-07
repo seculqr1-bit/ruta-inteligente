@@ -72,8 +72,7 @@ Las condiciones de tráfico se clasifican usando los cuartiles Q1, Q2 y Q3 calcu
 
 ## 📄 Licencia
 
-Distribuido bajo la licencia **MIT**. Ver [`LICENSE`](LICENSE) para más información.
-
+Distribuido bajo la licencia **MIT**.
 ---
 
 <div align="center">
