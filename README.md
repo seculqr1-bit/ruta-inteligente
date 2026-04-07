@@ -4,7 +4,7 @@
 
 <br>
 
-<img src="assets/sir_logo.png" width="250" alt="SIR Logo">
+<img src="sir_logo.png" width="250" alt="SIR Logo">
 
 # Sistema Inteligente de Rutas
 
