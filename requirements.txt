@@ -1,0 +1,2 @@
+# Dependencias del proyecto (Python)
+# Las dependencias se añadirán aquí a medida que el proyecto avance.

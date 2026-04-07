@@ -1,0 +1,33 @@
+
++------------------+
+|     USUARIO      |
+|    (Frontend)    |
++--------+---------+
+         |
+         | Solicitud de Ruta (Origen, Destino)
+         V
++--------+---------+
+|      BACKEND     |
+|    (Servidor)    |
++--------+---------+
+         |
+         | Solicitud de Ruta (API Externa)
+         V
++--------+---------+
+|   API EXTERNA    |
+|     DE MAPAS     |
++--------+---------+
+         |
+         | Respuesta de Ruta (Coordenadas, Tiempo)
+         V
++--------+---------+
+|      BACKEND     |
+|    (Servidor)    |
++--------+---------+
+         |
+         | Ruta y Tiempo (para Frontend)
+         V
++--------+---------+
+|     USUARIO      |
+|    (Frontend)    |
++------------------+
