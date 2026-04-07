@@ -1,114 +1,90 @@
+<!-- README.md — SIR: Sistema Inteligente de Rutas -->
+
 <div align="center">
 
-# 🚀 Sistema Inteligente de Rutas (SIR)
+<br>
 
-<img src="assets/sir_logo.png" width="300" alt="SIR Logo">
+<img src="assets/sir_logo.png" width="250" alt="SIR Logo">
 
-**Planificación de rutas inteligente, sencilla y eficiente.**
+# Sistema Inteligente de Rutas
 
-[![GitHub stars](https://img.shields.io/github/stars/seculqr1-bit/ruta-inteligente?style=for-the-badge)](https://github.com/seculqr1-bit/ruta-inteligente/stargazers)
-[![GitHub license](https://img.shields.io/github/license/seculqr1-bit/ruta-inteligente?style=for-the-badge)](https://github.com/seculqr1-bit/ruta-inteligente/blob/master/LICENSE)
-[![Status](https://img.shields.io/badge/Status-En%20Desarrollo-orange?style=for-the-badge)](https://github.com/seculqr1-bit/ruta-inteligente)
+<p style="font-size:16px; max-width:600px; margin: 0 auto;">
+Planificación de rutas urbanas basada en modelos estadísticos de machine learning,<br>
+datos de tráfico en tiempo real y alertas climáticas adaptativas.
+</p>
 
----
+<br>
 
-[Descripción](#-el-concepto-sir) • [Características](#-características-clave) • [Tecnologías](#-stack-tecnológico) • [Metodología](#-design-thinking) • [Fases](#-hoja-de-ruta)
+[![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-orange?style=for-the-badge)](https://github.com/seculqr1-bit/ruta-inteligente)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Django](https://img.shields.io/badge/Django-5-092E20?style=for-the-badge&logo=django&logoColor=white)](https://djangoproject.com)
+[![Licencia MIT](https://img.shields.io/badge/Licencia-MIT-22c55e?style=for-the-badge)](LICENSE)
+[![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-ec4899?style=for-the-badge)](https://github.com/seculqr1-bit/ruta-inteligente)
+
+<br>
+
+[Descripción](#-descripción) · [Características](#-características-clave) · [Stack](#-stack-tecnológico) · [Modelo ML](#-modelo-estadístico-predictivo) ·  · [Autores](#-autores)
+
+<br>
 
 </div>
 
 ---
 
-## 💡 El Concepto SIR
+##  Descripción
 
-El **Sistema Inteligente de Rutas (SIR)** no es solo un mapa; es una visión de cómo la tecnología puede simplificar nuestra movilidad diaria. En un mundo en constante movimiento, SIR nace de la necesidad de conectar puntos de manera eficiente, eliminando la fricción de la planificación manual.
+SIR es una herramienta de **código abierto** que ayuda a las personas a tomar mejores decisiones de movilidad **antes de salir de casa**. En lugar de depender de mapas genéricos, SIR entrena un modelo estadístico predictivo con datos históricos de tráfico, condiciones climáticas y reportes  para recomendar la ruta que, con mayor probabilidad estadística, resultará más eficiente para el usuario en ese momento específico.
 
-### ¿Por qué "Inteligente"?
-La inteligencia de SIR reside en su capacidad para procesar datos complejos de ruteo y transformarlos en una experiencia de usuario fluida. No se trata solo de ir de A a B, sino de entender el contexto del viaje, el tiempo y la mejor trayectoria posible.
+El sistema corre localmente en el navegador del usuario mediante un servidor **Django**, incluye registro de ubicaciones frecuentes (hogar, trabajo, etc.), visualización del mapa en tiempo real y un sistema de alertas graduadas basado en **rangos intercuartílicos (IQR)**.
 
-<div align="center">
-  <img src="assets/sir_concept_routing.png" width="800" alt="Concepto de Ruteo Inteligente">
-  <p><i>Visualización conceptual del motor de ruteo inteligente de SIR.</i></p>
-</div>
+
 
 ---
 
-## ✨ Características Clave
+##  Modelo estadístico predictivo
 
-| Característica | Descripción | Estado |
-| :--- | :--- | :--- |
-| **Ruteo Dinámico** | Cálculo de la trayectoria óptima entre dos puntos geográficos. | 🏗️ En Desarrollo |
-| **Estimación de Tiempo** | Cálculo preciso del tiempo de llegada basado en datos reales. | 🏗️ En Desarrollo |
-| **Interfaz Minimalista** | Diseño centrado en el usuario para una navegación sin distracciones. | 🎨 Diseñando |
-| **Alertas en Tiempo Real** | Notificaciones sobre incidencias o cambios en la ruta. | 📅 Fase 4 |
+Aclarar que SIR no es un agente de IA generativa, sino un **modelo de probabilidad supervisado(por humanoos)**. Para cada par origen–destino, el sistema calcula la probabilidad de eficiencia de cada ruta disponible dado un conjunto de variables de contexto
 
----
+### Sistema de alertas IQR
 
-## 🛠️ Stack Tecnológico
+Las condiciones de tráfico se clasifican usando los cuartiles Q1, Q2 y Q3 calculados sobre datos históricos del mismo tramo horario:
 
-Hemos seleccionado herramientas líderes en la industria para garantizar un rendimiento excepcional y una escalabilidad sin límites.
-
-| Componente | Tecnología | Propósito |
-| :--- | :--- | :--- |
-| **Frontend** | [React](https://react.dev/) / [Vue.js](https://vuejs.org/) | Interfaz de usuario reactiva y moderna. |
-| **Backend** | [Python](https://www.python.org/) / [Django](https://www.djangoproject.com/) | Lógica de negocio robusta y segura. |
-| **Mapas & Ruteo** | [Mapbox](https://www.mapbox.com/) / [Google Maps](https://developers.google.com/maps) | Motor geográfico y visualización de datos. |
-| **Base de Datos** | [PostgreSQL](https://www.postgresql.org/) | Almacenamiento de datos relacional y escalable. |
+| Nivel | Rango | Significado | Acción sugerida |
+| :---: | :---- | :---------- | :-------------- |
+|  **Normal** | < Q2 | Condiciones esperadas | Sin alerta activa |
+|  **Moderado** | Q2 – Q3 | Tráfico por encima del promedio | Pre-alerta, salida anticipada |
+|  **Crítico** | > Q3 | Congestión significativa | Alerta activa, ruta alternativa |
 
 ---
 
-## 🧠 Design Thinking
+##  Stack tecnológico
 
-Nuestra filosofía de desarrollo se basa en el **Design Thinking**, asegurando que cada línea de código resuelva un problema real del usuario.
-
-<div align="center">
-  <img src="assets/sir_concept_ux.png" width="600" alt="Concepto de Experiencia de Usuario">
-  <p><i>Prototipado centrado en la simplicidad y la eficiencia del usuario.</i></p>
-</div>
-
-1.  **Empatizar:** Escuchamos a quienes se desplazan a diario.
-2.  **Definir:** Identificamos los cuellos de botella en la planificación actual.
-3.  **Idear:** Creamos soluciones que priorizan la rapidez y la claridad.
-4.  **Prototipar:** Construimos versiones rápidas para validar ideas.
-5.  **Testear:** Refinamos SIR basándonos en el uso real.
+| Componente | Tecnología | Justificación |
+| :--------- | :--------- | :------------ |
+| **Backend** | [Django 5](https://www.djangoproject.com/) + [DRF](https://www.django-rest-framework.org/) | ORM declarativo para base de datos relacional sin configuración manual. Ahorra tiempo y reduce deuda técnica. |
+| **Modelo ML** | [scikit-learn](https://scikit-learn.org/) + [pandas](https://pandas.pydata.org/) + [NumPy](https://numpy.org/) | Pipeline estándar de Python para modelos estadísticos supervisados y manejo de datos. |
+| **Mapas** | [Folium](https://python-visualization.github.io/folium/) / [Google Maps API](https://developers.google.com/maps) | Visualización de mapas interactivos embebida directamente en la interfaz web Django. |
+| **Base de datos** | SQLite (dev) → [PostgreSQL](https://www.postgresql.org/) (prod) | Gestionado 100% por el ORM de Django. Sin escritura manual de SQL para las entidades base. |
+| **Frontend** | Django Templates + [Tailwind CSS](https://tailwindcss.com/) | Sin framework JS adicional para mantener el proyecto accesible y simple de contribuir. |
+| **Clima** | [OpenWeatherMap API](https://openweathermap.org/api) | API gratuita con tier para desarrollo. Pronóstico horario por coordenadas. |
 
 ---
 
-## 📅 Hoja de Ruta
+## 📄 Licencia
 
-```mermaid
-graph LR
-    A[Fase 1: Setup] --> B[Fase 2: MVP]
-    B --> C[Fase 3: Datos]
-    C --> D[Fase 4: Alertas]
-    style A fill:#f9f,stroke:#333,stroke-width:4px
-```
-
-*   **Fase 1 (Actual):** Cimentación del proyecto y documentación técnica.
-*   **Fase 2:** Lanzamiento del motor de ruteo básico y visualización en mapa.
-*   **Fase 3:** Persistencia de datos y perfiles de usuario.
-*   **Fase 4:** Sistema de alertas inteligentes y optimización final.
-
----
-
-## 📂 Estructura del Proyecto
-
-```bash
-ruta-inteligente/
-├── 📂 docs/          # Documentación técnica profunda
-├── 📂 diagrams/      # Arquitectura y flujos en ASCII
-├── 📂 assets/        # Identidad visual y recursos
-└── 📂 src/           # El corazón del código (Próximamente)
-```
+Distribuido bajo la licencia **MIT**. Ver [`LICENSE`](LICENSE) para más información.
 
 ---
 
 <div align="center">
 
-### Autores
-**Cear Torrecilla** & **Andres Gonzales**
+<br>
 
-Hecho con ❤️ para mejorar la movilidad del mañana.
+Desarrollado con ❤️ para mejorar la movilidad urbana.
 
-[Subir al inicio ↑](#-sistema-inteligente-de-rutas-sir)
+<br>
 
-</div>
+**César Torrecilla** &nbsp;·&nbsp; **Andrés González**
+
+
+</div>                                                   
