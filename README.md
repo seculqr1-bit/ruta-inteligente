@@ -9,8 +9,7 @@
 # Sistema Inteligente de Rutas
 
 <p style="font-size:16px; max-width:600px; margin: 0 auto;">
-Planificación de rutas urbanas basada en modelos estadísticos de machine learning,<br>
-datos de tráfico en tiempo real y alertas climáticas adaptativas.
+Planificación de rutas urbanas basada en un modelo estadístico de machine learning.<br>
 </p>
 
 <br>
@@ -33,9 +32,9 @@ datos de tráfico en tiempo real y alertas climáticas adaptativas.
 
 ##  Descripción
 
-SIR es una herramienta de **código abierto** que ayuda a las personas a tomar mejores decisiones de movilidad **antes de salir de casa**. En lugar de depender de mapas genéricos, SIR entrena un modelo estadístico predictivo con datos históricos de tráfico, condiciones climáticas y reportes  para recomendar la ruta que, con mayor probabilidad estadística, resultará más eficiente para el usuario en ese momento específico.
+SIR es una herramienta de **código abierto** que ayuda a las personas a tomar mejores decisiones de movilidad **antes de salir de casa**.  SIR entrena un modelo estadístico predictivo con datos históricos de tráfico, condiciones climáticas y reportes  para recomendar la ruta que, con mayor probabilidad estadística, resultará más eficiente para el usuario.
 
-El sistema corre localmente en el navegador del usuario mediante un servidor **Django**, incluye registro de ubicaciones frecuentes (hogar, trabajo, etc.), visualización del mapa en tiempo real y un sistema de alertas graduadas basado en **rangos intercuartílicos (IQR)**.
+El sistema corre localmente en el navegador del usuario mediante un servidor **Django**, incluye registro de ubicaciones frecuentes (hogar, trabajo, etc.), visualización del mapa  y un sistema de alertas graduadas basado en **rangos intercuartílicos (IQR)**.
 
 
 
@@ -43,7 +42,7 @@ El sistema corre localmente en el navegador del usuario mediante un servidor **D
 
 ##  Modelo estadístico predictivo
 
-Aclarar que SIR no es un agente de IA generativa, sino un **modelo de probabilidad supervisado(por humanoos)**. Para cada par origen–destino, el sistema calcula la probabilidad de eficiencia de cada ruta disponible dado un conjunto de variables de contexto
+Aclarar que SIR no es un agente de IA generativa, sino un **modelo de probabilidad supervisado**. Para cada par origen–destino, el sistema calcula la probabilidad de eficiencia de cada ruta disponible dado un conjunto de variables de contexto.
 
 ### Sistema de alertas IQR
 
