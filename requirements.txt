@@ -1,2 +1,3 @@
 # Dependencias del proyecto (Python)
 # Las dependencias se añadirán aquí a medida que el proyecto avance.
+osmnx\nnetworkx\npandas\nnumpy\nscikit-learn\nfolium\nrequests\nmatplotlib
